@@ -18,14 +18,10 @@ export default function ExperienceUltimateSection() {
 
         <div className="flex flex-col items-center">
           <Link href="/contact">
-            <Button className="bg-[#D35C37] hover:bg-[#B34D2E] text-white border-none rounded-none px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 text-lg sm:text-xl font-light tracking-wider mb-6 sm:mb-8">
+            <Button className="bg-[#D35C37] hover:bg-[#B34D2E] text-white border-none rounded-none px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 text-lg sm:text-xl font-light tracking-wider">
               CONTACT US
             </Button>
           </Link>
-
-          <a href="tel:7606072925" className="text-xl sm:text-2xl text-gray-800 hover:text-[#D35C37] transition-colors">
-            760-607-2925
-          </a>
         </div>
       </div>
     </section>
