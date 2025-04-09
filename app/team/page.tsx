@@ -1,6 +1,7 @@
 import TeamIntroSection from "@/components/sections/team-intro-section"
 import TeamPartnersSection from "@/components/sections/team-partners-section"
 import TeamPhotoSection from "@/components/sections/team-photo-section"
+import TeamContactSection from "@/components/sections/team-contact-section"
 import ExperienceUltimateSection from "@/components/sections/experience-ultimate-section"
 
 export default function TeamPage() {
@@ -14,6 +15,9 @@ export default function TeamPage() {
 
       {/* Team Photo Section */}
       <TeamPhotoSection />
+
+      {/* Team Contact Section */}
+      <TeamContactSection />
 
       {/* Experience Ultimate Lifestyle Section */}
       <ExperienceUltimateSection />

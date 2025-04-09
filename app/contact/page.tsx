@@ -2,6 +2,7 @@
 
 import { useEffect } from "react"
 import ContactCTASection from "@/components/sections/contact-cta-section"
+import TeamContactSection from "@/components/sections/team-contact-section"
 import ExperienceUltimateSection from "@/components/sections/experience-ultimate-section"
 
 export default function ContactPage() {
@@ -14,6 +15,7 @@ export default function ContactPage() {
   return (
     <main className="pt-24 sm:pt-28 md:pt-32 pb-0 min-h-screen bg-[#faf8f3] mb-0">
       <ContactCTASection />
+      <TeamContactSection />
       <div className="bg-white">
         <ExperienceUltimateSection />
       </div>
