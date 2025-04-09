@@ -4,6 +4,28 @@ import { useEffect } from "react"
 import Image from "next/image"
 import ExploreSection from "@/components/sections/explore-section"
 import ExperienceUltimateSection from "@/components/sections/experience-ultimate-section"
+import TeamContactSection from "@/components/sections/team-contact-section"
+
+// Image arrays
+const residenceImages = [
+  { src: "/placeholder.svg?height=600&width=600&text=Living+Room", alt: "Living Room" },
+  { src: "/placeholder.svg?height=600&width=600&text=Bedroom", alt: "Bedroom" },
+  { src: "/placeholder.svg?height=600&width=600&text=Bathroom", alt: "Bathroom" },
+]
+
+const communityImages = [
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202025-03-16%20at%208.00.41%20PM-Ah0lZ0nOCjnkooDDUFKuYiMofSGa6v.jpeg", alt: "Aerial view of townhomes" },
+  { src: "/placeholder.svg?height=600&width=600&text=Pool", alt: "Pool Area" },
+  { src: "/placeholder.svg?height=600&width=600&text=Gym", alt: "Fitness Center" },
+  { src: "/placeholder.svg?height=600&width=600&text=Lounge", alt: "Community Lounge" },
+]
+
+const lifestyleImages = [
+  { src: "/placeholder.svg?height=600&width=600&text=Shopping", alt: "Shopping" },
+  { src: "/placeholder.svg?height=600&width=600&text=Dining", alt: "Dining" },
+  { src: "/placeholder.svg?height=600&width=600&text=Parks", alt: "Parks" },
+  { src: "/placeholder.svg?height=600&width=600&text=Entertainment", alt: "Entertainment" },
+]
 
 export default function GalleryPage() {
   // Improve the hash navigation code to ensure it works reliably
@@ -33,66 +55,6 @@ export default function GalleryPage() {
       window.removeEventListener("hashchange", scrollToHash)
     }
   }, [])
-
-  // Featured residences images
-  const residenceImages = [
-    {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202025-03-16%20at%208.01.00%20PM-NjqdWpZE4tAXQTn8GfndItbmxSkjq5.jpeg",
-      alt: "Kitchen with dark wood cabinets",
-    },
-    {
-      src: "/placeholder.svg?height=600&width=800&text=Kitchen+View",
-      alt: "Kitchen with island",
-    },
-    {
-      src: "/placeholder.svg?height=600&width=800&text=Bathroom",
-      alt: "Bathroom with vanity",
-    },
-    {
-      src: "/placeholder.svg?height=600&width=800&text=Shower",
-      alt: "Glass shower enclosure",
-    },
-  ]
-
-  // Featured community images (formerly location images)
-  const communityImages = [
-    {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202025-03-16%20at%208.00.41%20PM-Ah0lZ0nOCjnkooDDUFKuYiMofSGa6v.jpeg",
-      alt: "Aerial view of Leander",
-    },
-    {
-      src: "/placeholder.svg?height=600&width=800&text=Neighborhood",
-      alt: "Leander neighborhood",
-    },
-    {
-      src: "/placeholder.svg?height=600&width=800&text=Downtown",
-      alt: "Downtown Leander",
-    },
-    {
-      src: "/placeholder.svg?height=600&width=800&text=Parks",
-      alt: "Leander parks",
-    },
-  ]
-
-  // Featured lifestyle images
-  const lifestyleImages = [
-    {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/inline-109f24bddf4c67f12846ddbc0b5258ce.jpg-RL3VpBhpk3KxNrmqwnImBmYdeXbdGe.jpeg",
-      alt: "Natural swimming area in Leander",
-    },
-    {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/casa-costa10-640x823.jpg-HSmY9PbRZM9UYRUIFzrqpdGTOOgfXC.jpeg",
-      alt: "Local cafe in Leander",
-    },
-    {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/73099637_2627985210590811_633003266610823168_n%20%281%29.jpg-4OmFeuCqRVXOuVJmMVCiDmY3TU2RMT.jpeg",
-      alt: "Sports fields in Leander",
-    },
-    {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Horizonlake-zCcB1DkEPbXWAOSFQfcjvvMtjnJ7as.jpeg",
-      alt: "Lake in Leander",
-    },
-  ]
 
   return (
     <main className="pt-24 sm:pt-28 md:pt-32 min-h-screen bg-[#faf8f3]">
@@ -153,10 +115,10 @@ export default function GalleryPage() {
                 className="object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
-            {residenceImages.slice(0, 3).map((image, index) => (
+            {residenceImages.map((image, index) => (
               <div key={index} className="aspect-square relative overflow-hidden">
                 <Image
-                  src={image.src || "/placeholder.svg"}
+                  src={image.src}
                   alt={image.alt}
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-500"
@@ -175,18 +137,10 @@ export default function GalleryPage() {
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            <div className="aspect-square relative overflow-hidden">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202025-03-16%20at%208.00.41%20PM-Ah0lZ0nOCjnkooDDUFKuYiMofSGa6v.jpeg"
-                alt="Aerial view of townhomes"
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-            {communityImages.slice(1, 4).map((image, index) => (
+            {communityImages.map((image, index) => (
               <div key={index} className="aspect-square relative overflow-hidden">
                 <Image
-                  src={image.src || "/placeholder.svg"}
+                  src={image.src}
                   alt={image.alt}
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-500"
@@ -209,7 +163,7 @@ export default function GalleryPage() {
               <div key={index} className="overflow-hidden">
                 <div className="aspect-[4/3] relative">
                   <Image
-                    src={image.src || "/placeholder.svg"}
+                    src={image.src}
                     alt={image.alt}
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-500"
@@ -221,8 +175,10 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Experience Ultimate Lifestyle Section */}
-      <ExperienceUltimateSection />
+      <div className="bg-white">
+        <TeamContactSection />
+        <ExperienceUltimateSection />
+      </div>
     </main>
   )
 }
