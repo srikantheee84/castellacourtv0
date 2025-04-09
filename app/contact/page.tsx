@@ -15,8 +15,8 @@ export default function ContactPage() {
   return (
     <main className="pt-24 sm:pt-28 md:pt-32 pb-0 min-h-screen bg-[#faf8f3] mb-0">
       <ContactCTASection />
-      <TeamContactSection />
       <div className="bg-white">
+        <TeamContactSection />
         <ExperienceUltimateSection />
       </div>
     </main>

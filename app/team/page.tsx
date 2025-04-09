@@ -16,11 +16,13 @@ export default function TeamPage() {
       {/* Team Photo Section */}
       <TeamPhotoSection />
 
-      {/* Team Contact Section */}
-      <TeamContactSection />
+      <div className="bg-white">
+        {/* Team Contact Section */}
+        <TeamContactSection />
 
-      {/* Experience Ultimate Lifestyle Section */}
-      <ExperienceUltimateSection />
+        {/* Experience Ultimate Lifestyle Section */}
+        <ExperienceUltimateSection />
+      </div>
     </main>
   )
 }

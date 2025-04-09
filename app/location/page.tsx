@@ -4,6 +4,7 @@ import MuellerAttractionsSection from "@/components/sections/mueller-attractions
 import LocationAdvantageSection from "@/components/sections/location-advantage-section"
 import IdeallyLocatedSection from "@/components/sections/ideally-located-section"
 import ExperienceUltimateSection from "@/components/sections/experience-ultimate-section"
+import TeamContactSection from "@/components/sections/team-contact-section"
 
 export default function LocationPage() {
   return (
@@ -23,8 +24,10 @@ export default function LocationPage() {
       {/* Ideally Located Section */}
       <IdeallyLocatedSection />
 
-      {/* Experience Ultimate Lifestyle Section */}
-      <ExperienceUltimateSection />
+      <div className="bg-white">
+        <TeamContactSection />
+        <ExperienceUltimateSection />
+      </div>
     </main>
   )
 }

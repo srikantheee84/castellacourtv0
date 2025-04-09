@@ -3,7 +3,9 @@
 import { useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import FloorPlansSection from "@/components/sections/floor-plans-section"
 import ExperienceUltimateSection from "@/components/sections/experience-ultimate-section"
+import TeamContactSection from "@/components/sections/team-contact-section"
 import ResidencesHero from "@/components/sections/residences-hero"
 import ResidecesBuildingInspiredSection from "@/components/sections/residences-building-inspired-section"
 
@@ -24,7 +26,7 @@ export default function ResidencesPage() {
   }, [])
 
   return (
-    <main className="pt-24 sm:pt-28 md:pt-32 min-h-screen bg-[#faf8f3]">
+    <main className="pt-24 sm:pt-28 md:pt-32 pb-0 min-h-screen bg-[#faf8f3] mb-0">
       {/* Hero Section */}
       <ResidencesHero />
 
@@ -182,8 +184,10 @@ export default function ResidencesPage() {
         </div>
       </section>
 
-      {/* Experience Ultimate Lifestyle Section */}
-      <ExperienceUltimateSection />
+      <div className="bg-white">
+        <TeamContactSection />
+        <ExperienceUltimateSection />
+      </div>
     </main>
   )
 }
