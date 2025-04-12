@@ -6,6 +6,7 @@ import ModernTownhomeSection from "@/components/sections/modern-townhome-section
 import ExploreSection from "@/components/sections/explore-section"
 import BestOfLeanderSection from "@/components/sections/best-of-leander-section"
 import ContactSection from "@/components/sections/contact-section"
+import TeamContactSection from "@/components/sections/team-contact-section"
 
 export default function Home() {
   return (
@@ -17,6 +18,9 @@ export default function Home() {
       <ModernTownhomeSection />
       <ExploreSection />
       <BestOfLeanderSection />
+      <div className="bg-white">
+        <TeamContactSection />
+      </div>
       <ContactSection />
     </div>
   )
