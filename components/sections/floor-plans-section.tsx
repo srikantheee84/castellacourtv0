@@ -9,38 +9,47 @@ export default function FloorPlansSection() {
   const floorPlans = [
     {
       title: "THE VALENCIA",
-      image: "/placeholder.svg?height=600&width=400&text=Valencia+Floor+Plans",
+      units: [
+        {
+          name: "V1",
+          pdfPath: "/pdfs/valencia/v1.pdf",
+          image: "/images/residences/floorplans/valencia/v1-thumb.jpg",
+          specs: "3 Bed | 2.5 Bath | Balcony | 1448 SqFt"
+        },
+        {
+          name: "V2",
+          pdfPath: "/pdfs/valencia/v2.pdf",
+          image: "/images/residences/floorplans/valencia/v2-thumb.jpg",
+          specs: "3 Bed | 2.5 Bath | Balcony | 1448 SqFt"
+        }
+      ],
       color: "#D35C37", // Orange-red
       viewText: "VIEW FLOOR PLANS",
     },
     {
       title: "THE MARBELLA",
-      image: "/placeholder.svg?height=600&width=400&text=Marbella+Floor+Plan",
+      units: [
+        {
+          name: "M1",
+          pdfPath: "/pdfs/marbella/m1.pdf",
+          image: "/images/residences/floorplans/marbella/m1-thumb.jpg",
+          specs: "3 Bed | 2.5 Bath | Balcony | 1850 SqFt"
+        },
+        {
+          name: "M2",
+          pdfPath: "/pdfs/marbella/m2.pdf",
+          image: "/images/residences/floorplans/marbella/m2-thumb.jpg",
+          specs: "3 Bed | 3 Bath | Balcony | 1950 SqFt"
+        }
+      ],
       color: "#3D7A7A", // Teal
       viewText: "VIEW FLOOR PLANS",
     },
   ]
 
-  const handleFloorPlanClick = (planTitle) => {
-    if (planTitle === "THE VALENCIA") {
-      router.push("/residences/valencia")
-      // Allow time for navigation to complete before scrolling
-      setTimeout(() => {
-        const valenciaSection = document.getElementById("valencia-plans")
-        if (valenciaSection) {
-          valenciaSection.scrollIntoView({ behavior: "smooth" })
-        }
-      }, 100)
-    } else if (planTitle === "THE MARBELLA") {
-      router.push("/residences/valencia")
-      // Allow time for navigation to complete before scrolling
-      setTimeout(() => {
-        const marbellaSection = document.getElementById("marbella-plans")
-        if (marbellaSection) {
-          marbellaSection.scrollIntoView({ behavior: "smooth" })
-        }
-      }, 100)
-    }
+  const handlePdfView = (pdfPath: string) => {
+    // Open PDF in a new tab
+    window.open(pdfPath, '_blank')
   }
 
   return (
@@ -61,22 +70,36 @@ export default function FloorPlansSection() {
                 {plan.title}
               </div>
 
-              {/* Floor Plan Image */}
+              {/* Floor Plan Units */}
               <div className="bg-[#e9e5dc] p-4 flex-grow">
-                <div className="relative aspect-[3/4] w-full">
-                  <Image src={plan.image || "/placeholder.svg"} alt={`${plan.title}`} fill className="object-contain" />
+                <div className="grid grid-cols-1 gap-8">
+                  {plan.units.map((unit, unitIndex) => (
+                    <div key={unitIndex} className="flex flex-col items-center">
+                      <div className="relative aspect-[3/4] w-full max-w-sm mx-auto mb-4">
+                        <Image 
+                          src={unit.image} 
+                          alt={`${plan.title} ${unit.name} Floor Plan`} 
+                          fill 
+                          className="object-contain"
+                          onError={(e) => {
+                            // Fallback to placeholder if image fails to load
+                            const target = e.target as HTMLImageElement;
+                            target.src = "/placeholder.svg?height=600&width=400&text=" + unit.name + "+Floor+Plan";
+                          }}
+                        />
+                      </div>
+                      <h3 className="text-3xl font-light mb-2">{unit.name}</h3>
+                      <p className="text-sm text-center mb-4">{unit.specs}</p>
+                      <button
+                        onClick={() => handlePdfView(unit.pdfPath)}
+                        className="text-sm font-medium tracking-wider hover:underline"
+                        style={{ color: plan.color }}
+                      >
+                        VIEW FLOOR PLAN PDF
+                      </button>
+                    </div>
+                  ))}
                 </div>
-              </div>
-
-              {/* View Floor Plans Link */}
-              <div className="mt-4 text-center">
-                <button
-                  onClick={() => handleFloorPlanClick(plan.title)}
-                  className="text-sm sm:text-base font-medium tracking-wider hover:underline"
-                  style={{ color: plan.color }}
-                >
-                  {plan.viewText}
-                </button>
               </div>
             </div>
           ))}

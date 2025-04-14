@@ -10,43 +10,33 @@ export default function ExploreSection({ showHeading = true }) {
   const exploreCategories = [
     {
       title: "RESIDENCES",
-      image:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202025-03-16%20at%208.01.00%20PM-NjqdWpZE4tAXQTn8GfndItbmxSkjq5.jpeg",
-      href: "/gallery#residences",
+      href: "/residences",
       sectionId: "residences",
-      color: "from-[#3D7A7A]/30 to-[#3D7A7A]/50",
+      image: "/images/home/explore/explore1.jpeg",
+      color: "from-black/0 to-black/50",
     },
     {
       title: "COMMUNITY",
-      image:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202025-03-16%20at%208.00.41%20PM-Ah0lZ0nOCjnkooDDUFKuYiMofSGa6v.jpeg",
-      href: "/gallery#community",
+      href: "/gallery",
       sectionId: "community",
-      color: "from-[#D35C37]/30 to-[#D35C37]/50",
+      image: "/images/home/explore/explore2.jpeg",
+      color: "from-black/0 to-black/50",
     },
     {
       title: "LIFESTYLE",
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Horizonlake-zCcB1DkEPbXWAOSFQfcjvvMtjnJ7as.jpeg",
-      href: "/gallery#lifestyle",
+      href: "/gallery",
       sectionId: "lifestyle",
-      color: "from-[#C19A50]/30 to-[#C19A50]/50",
+      image: "/images/home/explore/explore3.jpeg",
+      color: "from-black/0 to-black/50",
     },
   ]
 
   // Handle section navigation
-  const handleSectionClick = (e, sectionId) => {
+  const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault()
-
-    // If we're already on the gallery page
-    if (pathname === "/gallery") {
-      // Find the section and scroll to it
-      const section = document.getElementById(sectionId)
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" })
-      }
-    } else {
-      // Navigate to gallery page with the hash
-      router.push(`/gallery#${sectionId}`)
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
     }
   }
 

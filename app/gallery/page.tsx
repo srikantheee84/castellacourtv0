@@ -1,23 +1,22 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import ExploreSection from "@/components/sections/explore-section"
 import ExperienceUltimateSection from "@/components/sections/experience-ultimate-section"
 import TeamContactSection from "@/components/sections/team-contact-section"
 
-// Image arrays
-const residenceImages = [
-  { src: "/placeholder.svg?height=600&width=600&text=Living+Room", alt: "Living Room" },
-  { src: "/placeholder.svg?height=600&width=600&text=Bedroom", alt: "Bedroom" },
-  { src: "/placeholder.svg?height=600&width=600&text=Bathroom", alt: "Bathroom" },
-]
+interface GalleryImage {
+  src: string
+  alt: string
+}
 
-const communityImages = [
-  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202025-03-16%20at%208.00.41%20PM-Ah0lZ0nOCjnkooDDUFKuYiMofSGa6v.jpeg", alt: "Aerial view of townhomes" },
-  { src: "/placeholder.svg?height=600&width=600&text=Pool", alt: "Pool Area" },
-  { src: "/placeholder.svg?height=600&width=600&text=Gym", alt: "Fitness Center" },
-  { src: "/placeholder.svg?height=600&width=600&text=Lounge", alt: "Community Lounge" },
+// Image arrays
+const residenceCategories = [
+  { name: "Kitchen & Dining", images: [] },
+  { name: "Living Areas", images: [] },
+  { name: "Bedrooms", images: [] },
+  { name: "Bathrooms", images: [] }
 ]
 
 const lifestyleImages = [
@@ -28,16 +27,55 @@ const lifestyleImages = [
 ]
 
 export default function GalleryPage() {
-  // Improve the hash navigation code to ensure it works reliably
+  const [residenceImages, setResidenceImages] = useState<GalleryImage[]>([])
+  const [communityImages, setCommunityImages] = useState<GalleryImage[]>([])
+  const [isLoadingResidences, setIsLoadingResidences] = useState(true)
+  const [isLoadingCommunity, setIsLoadingCommunity] = useState(true)
+
+  // Load residence images
   useEffect(() => {
-    // Function to handle scrolling to hash
+    async function loadImages() {
+      try {
+        setIsLoadingResidences(true)
+        const response = await fetch('/api/gallery-images?category=residences')
+        const images = await response.json()
+        setResidenceImages(images)
+      } catch (error) {
+        console.error('Error loading residence images:', error)
+      } finally {
+        setIsLoadingResidences(false)
+      }
+    }
+
+    loadImages()
+  }, [])
+
+  // Load community images
+  useEffect(() => {
+    async function loadImages() {
+      try {
+        setIsLoadingCommunity(true)
+        const response = await fetch('/api/gallery-images?category=community')
+        const images = await response.json()
+        setCommunityImages(images)
+      } catch (error) {
+        console.error('Error loading community images:', error)
+      } finally {
+        setIsLoadingCommunity(false)
+      }
+    }
+
+    loadImages()
+  }, [])
+
+  // Hash navigation
+  useEffect(() => {
     const scrollToHash = () => {
       if (window.location.hash) {
         const id = window.location.hash.substring(1)
         const element = document.getElementById(id)
 
         if (element) {
-          // Use a slightly longer timeout to ensure the page is fully rendered
           setTimeout(() => {
             element.scrollIntoView({ behavior: "smooth" })
           }, 300)
@@ -45,15 +83,9 @@ export default function GalleryPage() {
       }
     }
 
-    // Call on initial load
     scrollToHash()
-
-    // Also add event listener for hashchange to handle navigation within the page
     window.addEventListener("hashchange", scrollToHash)
-
-    return () => {
-      window.removeEventListener("hashchange", scrollToHash)
-    }
+    return () => window.removeEventListener("hashchange", scrollToHash)
   }, [])
 
   return (
@@ -64,7 +96,6 @@ export default function GalleryPage() {
           {/* Logo Circle - Smaller size */}
           <div className="flex justify-center mb-8">
             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-[#C19A50] flex items-center justify-center">
-              {/* Simpler building icon */}
               <svg width="40%" height="40%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="5" y="10" width="5" height="10" fill="white" />
                 <rect x="14" y="7" width="5" height="13" fill="white" />
@@ -82,7 +113,6 @@ export default function GalleryPage() {
             </div>
           </div>
 
-          {/* Gallery Description - Smaller font size */}
           <h1
             className="text-base sm:text-lg md:text-xl font-normal leading-relaxed text-[#333333] mb-12 max-w-2xl mx-auto"
             style={{
@@ -106,26 +136,32 @@ export default function GalleryPage() {
             RESIDENCES
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            <div className="aspect-square relative overflow-hidden">
-              <Image
-                src="/placeholder.svg?height=600&width=600&text=Kitchen"
-                alt="Kitchen placeholder"
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-500"
-              />
+          {isLoadingResidences ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+              {[1, 2, 3, 4].map((_, index) => (
+                <div key={index} className="aspect-square bg-gray-200 animate-pulse" />
+              ))}
             </div>
-            {residenceImages.map((image, index) => (
-              <div key={index} className="aspect-square relative overflow-hidden">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            ))}
-          </div>
+          ) : residenceImages.length === 0 ? (
+            <p className="text-center text-gray-500">No images available</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+              {residenceImages.map((image, index) => (
+                <div key={index} className="aspect-square relative overflow-hidden group">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                    <p className="text-white p-4 text-sm sm:text-base">{image.alt}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -136,22 +172,36 @@ export default function GalleryPage() {
             COMMUNITY
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {communityImages.map((image, index) => (
-              <div key={index} className="aspect-square relative overflow-hidden">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            ))}
-          </div>
+          {isLoadingCommunity ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+              {[1, 2, 3, 4].map((_, index) => (
+                <div key={index} className="aspect-square bg-gray-200 animate-pulse" />
+              ))}
+            </div>
+          ) : communityImages.length === 0 ? (
+            <p className="text-center text-gray-500">No images available</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+              {communityImages.map((image, index) => (
+                <div key={index} className="aspect-square relative overflow-hidden group">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                    <p className="text-white p-4 text-sm sm:text-base">{image.alt}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Featured Lifestyle Gallery Section */}
+      {/* LIFESTYLE Section */}
       <section id="lifestyle" className="py-16 sm:py-20 md:py-24 bg-white">
         <div className="w-[95%] mx-auto">
           <h2 className="text-center text-3xl sm:text-4xl md:text-5xl font-light text-[#C19A50] mb-12 sm:mb-16">
@@ -160,14 +210,18 @@ export default function GalleryPage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {lifestyleImages.map((image, index) => (
-              <div key={index} className="overflow-hidden">
+              <div key={index} className="overflow-hidden group">
                 <div className="aspect-[4/3] relative">
                   <Image
                     src={image.src}
                     alt={image.alt}
                     fill
-                    className="object-cover hover:scale-105 transition-transform duration-500"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 50vw, 25vw"
                   />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                    <p className="text-white p-4 text-sm sm:text-base">{image.alt}</p>
+                  </div>
                 </div>
               </div>
             ))}

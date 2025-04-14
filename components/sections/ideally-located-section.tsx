@@ -20,10 +20,11 @@ export default function IdeallyLocatedSection() {
         <div className="relative w-full mb-10 sm:mb-12">
           <div className="relative w-full aspect-[16/9] bg-white">
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-1q7kn5essNPOsnGLDqhQt3Y5CzbKAS.png"
+              src="/images/location/location-map.png"
               alt="Map showing Castella Court location"
-              fill
-              className="object-contain"
+              width={800}
+              height={600}
+              className="w-full h-auto"
             />
           </div>
         </div>
@@ -47,7 +48,7 @@ export default function IdeallyLocatedSection() {
                 </button>
                 <div className="w-full h-full overflow-auto p-1">
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-1q7kn5essNPOsnGLDqhQt3Y5CzbKAS.png"
+                    src="/images/location/location-map.png"
                     alt="Map showing Castella Court location"
                     width={2000}
                     height={1500}

@@ -1,13 +1,13 @@
+"use client"
+
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import ContactForm from "@/components/contact-form"
-import ExperienceUltimateSection from "@/components/sections/experience-ultimate-section"
 
 interface FloorPlanDetailProps {
   planId: string
   location: string
   bedrooms: number
-  bathrooms: number | string
+  bathrooms: string
   squareFeet: number
   accentColor: string
   imagePath: string
@@ -22,7 +22,11 @@ export default function FloorPlanDetail({
   accentColor,
   imagePath,
 }: FloorPlanDetailProps) {
-  const hoverColor = accentColor === "#D35C37" ? "#B34D2E" : accentColor === "#3D7A7A" ? "#2D5A5A" : "#A17A30"
+  const pdfPath = `/pdfs/valencia/${planId.toLowerCase()}.pdf`
+
+  const handleDownloadPdf = () => {
+    window.open(pdfPath, '_blank')
+  }
 
   return (
     <main className="pt-24 sm:pt-28 md:pt-32 min-h-screen bg-white">
@@ -43,11 +47,15 @@ export default function FloorPlanDetail({
         <div className="max-w-2xl mx-auto">
           <div className="relative aspect-[3/4] w-full">
             <Image
-              src={imagePath || "/placeholder.svg"}
+              src={imagePath}
               alt={`${planId} Floor Plan`}
               fill
               className="object-contain"
               priority
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = `/placeholder.svg?height=800&width=600&text=${planId}+Floor+Plan`;
+              }}
             />
           </div>
         </div>
@@ -70,33 +78,14 @@ export default function FloorPlanDetail({
         </div>
 
         <div className="flex justify-center mt-12 sm:mt-16">
-          <Button
-            className="text-white border-none rounded-none px-8 py-4 text-lg font-light tracking-wider"
-            style={{ backgroundColor: accentColor, hover: { backgroundColor: hoverColor } }}
+          <button
+            onClick={handleDownloadPdf}
+            className="bg-[#D35C37] hover:bg-[#B34D2E] text-white px-8 py-4 text-lg font-light tracking-wider transition-colors"
           >
             DOWNLOAD PDF
-          </Button>
+          </button>
         </div>
       </section>
-
-      {/* Contact Form Section */}
-      <section className="bg-[#f2ece3] py-16 sm:py-20 md:py-24 px-4">
-        <div className="max-w-3xl mx-auto bg-white p-8 sm:p-10 md:p-12 shadow-sm">
-          <div className="text-center mb-10 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-4">
-              Found a floor plan that looks right for you?
-            </h2>
-            <p className="text-base sm:text-lg text-gray-600">
-              Let us know you're interested in receiving more information about Castella Court at Leander.
-            </p>
-          </div>
-
-          <ContactForm accentColor={accentColor} />
-        </div>
-      </section>
-
-      {/* Experience Ultimate Lifestyle Section */}
-      <ExperienceUltimateSection />
     </main>
   )
 }

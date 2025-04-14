@@ -5,15 +5,15 @@ import { Button } from "@/components/ui/button"
 export default function LiveWorkPlaySection() {
   const lifestyleImages = [
     {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/inline-109f24bddf4c67f12846ddbc0b5258ce.jpg-RL3VpBhpk3KxNrmqwnImBmYdeXbdGe.jpeg",
+      src: "/images/lifestyle/swimming-area.jpg",
       alt: "Natural swimming area with clear blue water surrounded by greenery",
     },
     {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/casa-costa10-640x823.jpg-HSmY9PbRZM9UYRUIFzrqpdGTOOgfXC.jpeg",
+      src: "/images/lifestyle/cafe-interior.jpg",
       alt: "Cozy cafe interior with wooden ceiling and pastry display",
     },
     {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/73099637_2627985210590811_633003266610823168_n%20%281%29.jpg-4OmFeuCqRVXOuVJmMVCiDmY3TU2RMT.jpeg",
+      src: "/images/lifestyle/soccer-fields.jpg",
       alt: "Aerial view of soccer fields and community recreational area",
     },
   ]

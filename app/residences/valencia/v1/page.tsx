@@ -12,7 +12,7 @@ export default function ValenciaV1Page() {
   return (
     <FloorPlanDetail
       planId="V1"
-      location="Street"
+      location="North"
       bedrooms={3}
       bathrooms="2.5"
       squareFeet={1448}

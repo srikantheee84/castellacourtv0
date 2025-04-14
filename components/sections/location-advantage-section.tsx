@@ -7,11 +7,11 @@ export default function LocationAdvantageSection() {
       <div className="relative w-full h-[30vh] sm:h-[40vh] md:h-[50vh] overflow-hidden">
         {/* Background image */}
         <Image
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-03-18%20at%206.35.17%E2%80%AFPM-MaybbPUuwhjSEgiIczfg1Dz31wTdvD.png"
-          alt="Aerial view of Leander with city skyline in the background"
-          fill
-          className="object-cover"
-          priority
+          src="/images/location/location-map.png"
+          alt="Map showing Castella Court location"
+          width={800}
+          height={600}
+          className="w-full h-auto"
         />
 
         {/* Semi-transparent overlay */}

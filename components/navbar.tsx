@@ -360,11 +360,12 @@ export default function Navbar() {
               {/* Also update the logo click to scroll to top */}
               <Link href="/" className="block" onClick={() => window.scrollTo(0, 0)}>
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Castell%20Court-poR7demx6FAWSYeSFsEaDUNmy0UHdk.svg"
-                  alt="Castella Court"
-                  width={logoWidth}
-                  height={logoHeightProp}
-                  className={`w-auto object-contain transition-all duration-300 ${logoHeight}`}
+                  src="/images/castell-court-logo.svg"
+                  alt="Castell Court"
+                  width={800}
+                  height={400}
+                  className="w-auto h-20 sm:h-32 md:h-40 lg:h-48"
+                  priority
                 />
               </Link>
             </div>

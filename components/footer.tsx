@@ -38,11 +38,11 @@ export default function Footer() {
           <div className="mb-8 md:mb-0 md:mr-24 lg:mr-28 xl:mr-32 md:-mt-6">
             <Link href="/" className="inline-block">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Castell%20Court-poR7demx6FAWSYeSFsEaDUNmy0UHdk.svg"
-                alt="Castella Court"
-                width={400}
-                height={200}
-                className="w-auto h-auto max-w-[240px] sm:max-w-[280px] md:max-w-[320px] lg:max-w-[360px] xl:max-w-[400px]"
+                src="/images/castell-court-logo.svg"
+                alt="Castell Court"
+                width={1000}
+                height={500}
+                className="w-auto h-32 sm:h-40 md:h-48 lg:h-64"
                 priority
               />
             </Link>

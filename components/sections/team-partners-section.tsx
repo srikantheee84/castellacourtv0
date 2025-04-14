@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 export default function TeamPartnersSection() {
   return (
@@ -9,10 +10,12 @@ export default function TeamPartnersSection() {
           <div className="bg-white p-8 flex flex-col">
             <div className="h-24 flex items-center justify-center mb-8">
               <div className="flex justify-center w-full">
-                <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-yXfFy1mC6t1Vyij2Dl1ZZs9wkR6ySu.png"
+                <Image
+                  src="/images/team/partner1.png"
                   alt="Dreamcraft Logo"
-                  className="h-20 object-contain"
+                  width={300}
+                  height={100}
+                  className="w-full h-auto"
                 />
               </div>
             </div>
@@ -45,10 +48,12 @@ export default function TeamPartnersSection() {
           <div className="bg-white p-8 flex flex-col">
             <div className="h-24 flex items-center justify-center mb-8">
               <div className="flex justify-center w-full">
-                <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-uhX2eFhrYKCB5Vdy5XHr7fQb1Omxmi.png"
+                <Image
+                  src="/images/team/partner2.png"
                   alt="3A Logo"
-                  className="h-16 object-contain"
+                  width={300}
+                  height={100}
+                  className="w-full h-auto"
                 />
               </div>
             </div>
@@ -89,10 +94,12 @@ export default function TeamPartnersSection() {
           <div className="bg-white p-8 flex flex-col">
             <div className="h-24 flex items-center justify-center mb-8">
               <div className="relative w-20 h-20">
-                <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/the_eklund_gomes_team_logo-KTw73EmuWQV78NUhEu3gaC5f36mBjK.jpeg"
-                  alt="EKLUND GOMES Logo"
-                  className="w-full h-full object-contain"
+                <Image
+                  src="/images/team/eklund-gomes-logo.jpeg"
+                  alt="The Eklund | Gomes Team"
+                  width={300}
+                  height={100}
+                  className="w-full h-auto"
                 />
               </div>
             </div>

@@ -40,10 +40,14 @@ export default function ValenciaPage() {
             <div className="relative mb-4">
               <div className="relative w-64 h-80 sm:w-72 sm:h-96">
                 <Image
-                  src="/placeholder.svg?height=600&width=500&text=V1+Floor+Plan"
+                  src="/images/residences/floorplans/valencia/v1-thumb.jpg"
                   alt="V1 Floor Plan"
                   fill
                   className="object-contain"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "/placeholder.svg?height=600&width=500&text=V1+Floor+Plan";
+                  }}
                 />
               </div>
             </div>
@@ -64,10 +68,14 @@ export default function ValenciaPage() {
             <div className="relative mb-4">
               <div className="relative w-64 h-80 sm:w-72 sm:h-96">
                 <Image
-                  src="/placeholder.svg?height=600&width=500&text=V2+Floor+Plan"
+                  src="/images/residences/floorplans/valencia/v2-thumb.jpg"
                   alt="V2 Floor Plan"
                   fill
                   className="object-contain"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "/placeholder.svg?height=600&width=500&text=V2+Floor+Plan";
+                  }}
                 />
               </div>
             </div>
